@@ -27,19 +27,18 @@ public class FreeCell : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Card")
         {
             Interactable interactable = other.gameObject.GetComponent<Interactable>();
            
             
-            if (isAvailable == true)
+            if (isAvailable == true && interactable.isMouseDragged == false)
             {
                 //interactable bool should turn on here
                 heldCard = other.gameObject;
                 heldCard.transform.position = this.transform.position;
-                print("space available");
                 interactable.OnPointerUp(eventData);
                 isAvailable = false;
                 
