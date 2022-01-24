@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 61656307}
   - component: {fileID: 61656310}
   - component: {fileID: 61656309}
+  - component: {fileID: 61656311}
   m_Layer: 5
   m_Name: Foundations (2)
   m_TagString: Foundation
@@ -230,6 +231,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 65.75, y: 85.24, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &61656311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61656305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb8cae78c08f324080c4e110e362690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heldCard: {fileID: 0}
+  isAvailable: 1
+  foundationType: 1
 --- !u!1 &104045766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,6 +1943,7 @@ GameObject:
   - component: {fileID: 1383546907}
   - component: {fileID: 1383546910}
   - component: {fileID: 1383546909}
+  - component: {fileID: 1383546911}
   m_Layer: 5
   m_Name: Foundations (3)
   m_TagString: Foundation
@@ -2021,6 +2038,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 65.75, y: 85.24, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1383546911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383546905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb8cae78c08f324080c4e110e362690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heldCard: {fileID: 0}
+  isAvailable: 1
+  foundationType: 2
 --- !u!1 &1411490197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,6 +2789,7 @@ GameObject:
   - component: {fileID: 1890503549}
   - component: {fileID: 1890503552}
   - component: {fileID: 1890503551}
+  - component: {fileID: 1890503553}
   m_Layer: 5
   m_Name: Foundations (4)
   m_TagString: Foundation
@@ -2851,6 +2884,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 65.75, y: 85.24, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1890503553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890503547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb8cae78c08f324080c4e110e362690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heldCard: {fileID: 0}
+  isAvailable: 1
+  foundationType: 0
 --- !u!1 &2057033335
 GameObject:
   m_ObjectHideFlags: 0
@@ -3014,6 +3062,7 @@ GameObject:
   - component: {fileID: 2115882197}
   - component: {fileID: 2115882200}
   - component: {fileID: 2115882199}
+  - component: {fileID: 2115882201}
   m_Layer: 5
   m_Name: Foundations (1)
   m_TagString: Foundation
@@ -3108,3 +3157,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 65.75, y: 85.24, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2115882201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115882195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb8cae78c08f324080c4e110e362690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heldCard: {fileID: 0}
+  isAvailable: 1
+  foundationType: 3

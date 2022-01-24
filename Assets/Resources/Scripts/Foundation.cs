@@ -1,9 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class FreeCell : MonoBehaviour
+public class Foundation : MonoBehaviour
 {
     [SerializeField]
     private GameObject heldCard;
@@ -11,19 +10,27 @@ public class FreeCell : MonoBehaviour
     public bool isAvailable = true;
 
     Interactable interactable;
-    PointerEventData eventData;
-  
+
+    public enum FoundationType
+    {
+        C,
+        S,
+        D,
+        H,
+    }
+
+    public FoundationType foundationType;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -32,15 +39,19 @@ public class FreeCell : MonoBehaviour
         if (other.tag == "Card")
         {
             Interactable interactable = other.gameObject.GetComponent<Interactable>();
-           
-            
-            if (isAvailable == true && interactable.isMouseDragged == false)
+
+            if (interactable.suit == foundationType.ToString())
             {
-                //interactable bool should turn on here
-                heldCard = other.gameObject;
-                heldCard.transform.position = this.transform.position;
-                isAvailable = false;
-                
+
+
+                if (isAvailable == true && interactable.isMouseDragged == false)
+                {
+                    //interactable bool should turn on here
+                    heldCard = other.gameObject;
+                    heldCard.transform.position = this.transform.position;
+                    isAvailable = false;
+
+                }
             }
         }
     }
@@ -56,5 +67,4 @@ public class FreeCell : MonoBehaviour
             }
         }
     }
-
 }
