@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
+public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerUpHandler
 {
     public bool foundation = false;
     public bool isMouseDragged;
