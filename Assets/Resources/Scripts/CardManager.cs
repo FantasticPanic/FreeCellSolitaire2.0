@@ -84,7 +84,7 @@ public class CardManager : MonoBehaviour
                 foreach (string card in tableau[i])
                 {
                     GameObject newCard = Instantiate(cardPrefab, new Vector3(tableauPos[i].transform.position.x, tableauPos[i].transform.position.y - yOffset,
-                        0), Quaternion.identity, tableauPos[i].transform);
+                        1), Quaternion.identity, tableauPos[i].transform);
                     newCard.name = card;
                     newCard.GetComponent<Interactable>().row = i;
                     newCard.transform.SetParent(tableauPos[i].transform);

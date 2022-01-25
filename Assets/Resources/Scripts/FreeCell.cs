@@ -11,6 +11,7 @@ public class FreeCell : MonoBehaviour
     public bool isAvailable = true;
 
     Interactable interactable;
+    UserInput userInput;
     PointerEventData eventData;
   
 
@@ -23,7 +24,14 @@ public class FreeCell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isAvailable == true)
+        {
+            this.gameObject.GetComponent<BoxCollider>().enabled = true;
+        }
+        else
+        {
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
     }
 
 
@@ -41,7 +49,7 @@ public class FreeCell : MonoBehaviour
                 heldCard.transform.position = this.transform.position;
                 interactable.stackable = true;
                 isAvailable = false;
-                
+               // userInput.Stack();
             }
         }
     }

@@ -11,6 +11,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     public bool stackable;
 
     public string suit;
+    public string color;
     public int value;
     public int row;
 
@@ -102,6 +103,15 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
             {
                 value = 13;
             }
+
+            if (suit == "S" || suit == "C")
+            {
+                color = "black";
+            }
+            else
+            {
+                color = "red";
+            }
         }
     }
 
@@ -129,7 +139,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         oldCardPosition = this.gameObject.transform.position;
         
         //idk what this is doing
-        //userInput.Card(this.gameObject);
+        userInput.card1 = this.gameObject;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -138,7 +148,8 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     }
 
     public void OnPointerUp(PointerEventData eventData)
-    {     
+    {
+       // userInput.Stack();
         isMouseDragged = false;
         userInput.card1 = null;
         userInput.card2 = null;
@@ -147,6 +158,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         {
             ResetCard();
         }
+        
         print("Let Go!");
 
 
@@ -159,7 +171,6 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
             if (other.gameObject.CompareTag("Card") || other.gameObject.CompareTag("FreeCell") || other.gameObject.CompareTag("Foundation"))
             {
                 userInput.card2 = other.gameObject;
-
             }
         }
     }

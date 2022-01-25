@@ -866,7 +866,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 72.13, y: 98.31, z: 1}
+  m_Size: {x: 50, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &685594929
 Rigidbody:
@@ -1898,7 +1898,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 72.13, y: 98.31, z: 1}
+  m_Size: {x: 50, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1377987637
 Rigidbody:
@@ -2201,8 +2201,8 @@ GameObject:
   - component: {fileID: 1633909034}
   - component: {fileID: 1633909033}
   - component: {fileID: 1633909036}
-  - component: {fileID: 1633909035}
   - component: {fileID: 1633909037}
+  - component: {fileID: 1633909035}
   m_Layer: 5
   m_Name: FreeCell (3)
   m_TagString: FreeCell
@@ -2279,7 +2279,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 72.13, y: 98.31, z: 1}
+  m_Size: {x: 50, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1633909036
 Rigidbody:
@@ -2744,7 +2744,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 72.13, y: 98.31, z: 1}
+  m_Size: {x: 50, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1889790138
 Rigidbody:

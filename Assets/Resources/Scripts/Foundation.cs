@@ -40,6 +40,7 @@ public class Foundation : MonoBehaviour
         {
             Interactable interactable = other.gameObject.GetComponent<Interactable>();
             interactable.stackable = true;
+
             if (interactable.suit == foundationType.ToString() && interactable.value == 1)
             {
                
@@ -50,7 +51,6 @@ public class Foundation : MonoBehaviour
                     heldCard = other.gameObject;
                     heldCard.transform.position = this.transform.position;
                     interactable.oldCardPosition = interactable.gameObject.transform.position;
-                    //interactable.stackable = true;
                     isAvailable = false;
                     
 
