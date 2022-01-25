@@ -33,6 +33,8 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         none,
     }
 
+    public CardState cardState;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -121,6 +123,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     {
         
         isMouseDragged = true;
+        //stackable = false;
         SelectedCard(this.gameObject);
         transform.parent.SetAsLastSibling();
         oldCardPosition = this.gameObject.transform.position;
@@ -139,19 +142,24 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         isMouseDragged = false;
         userInput.card1 = null;
         userInput.card2 = null;
-       // CheckCard();
+
+        if (stackable == false)
+        {
+            ResetCard();
+        }
         print("Let Go!");
 
 
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (isMouseDragged)
         {
             if (other.gameObject.CompareTag("Card") || other.gameObject.CompareTag("FreeCell") || other.gameObject.CompareTag("Foundation"))
             {
                 userInput.card2 = other.gameObject;
+
             }
         }
     }
@@ -159,46 +167,45 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     void SelectedCard(GameObject selected)
     {
         print(selected.name + " selected");
+        
     }
 
 
-    IEnumerator CardStatus(CardState cardState)
+   public IEnumerator CardStatus(CardState cardState)
     {
         switch (cardState)
         {
             case CardState.tableau:
                 {
                     print("card placed in tableau");
+                    cardState = CardState.tableau;
                     break;
                 }
             case CardState.freeCell:
                 {
                     print("card placed in Free Cell");
+                    cardState = CardState.freeCell;
                     break;
                 }
             case CardState.foundation:
                 {
                     print("card placed in Foundation");
+                    cardState = CardState.foundation;
                     break;
                 }
             case CardState.none:
                 {
                     print("card returns to old position");
+                    cardState = CardState.none;
                     break;
                 }
         }
         yield return new WaitForSeconds(0.1f);
     }
 
-    public void CheckCard()
+    public void ResetCard()
     {
-        if (isMouseDragged == false)
-        {
-            this.gameObject.transform.position = oldCardPosition;
-            StartCoroutine(CardStatus(CardState.none));
-        }
-       
-
+        this.gameObject.transform.position = oldCardPosition;
     }
 
 }

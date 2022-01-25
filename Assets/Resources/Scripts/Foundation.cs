@@ -40,21 +40,26 @@ public class Foundation : MonoBehaviour
         {
             Interactable interactable = other.gameObject.GetComponent<Interactable>();
 
-            if (interactable.suit == foundationType.ToString())
+            if (interactable.suit == foundationType.ToString() && interactable.value == 1)
             {
-
+                interactable.stackable = true;
 
                 if (isAvailable == true && interactable.isMouseDragged == false)
                 {
                     //interactable bool should turn on here
                     heldCard = other.gameObject;
                     heldCard.transform.position = this.transform.position;
+                    interactable.oldCardPosition = interactable.gameObject.transform.position;
                     isAvailable = false;
+                    
 
                 }
             }
         }
+     
     }
+
+   
 
     private void OnTriggerExit(Collider other)
     {
@@ -62,7 +67,7 @@ public class Foundation : MonoBehaviour
         {
             if (isAvailable == false)
             {
-                heldCard = null;
+                heldCard = null;               
                 isAvailable = true;
             }
         }
