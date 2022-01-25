@@ -36,13 +36,13 @@ public class Foundation : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Card")
+        if (other.tag == "Card" && isAvailable == true)
         {
             Interactable interactable = other.gameObject.GetComponent<Interactable>();
-
+            interactable.stackable = true;
             if (interactable.suit == foundationType.ToString() && interactable.value == 1)
             {
-                interactable.stackable = true;
+               
 
                 if (isAvailable == true && interactable.isMouseDragged == false)
                 {
@@ -50,6 +50,7 @@ public class Foundation : MonoBehaviour
                     heldCard = other.gameObject;
                     heldCard.transform.position = this.transform.position;
                     interactable.oldCardPosition = interactable.gameObject.transform.position;
+                    //interactable.stackable = true;
                     isAvailable = false;
                     
 

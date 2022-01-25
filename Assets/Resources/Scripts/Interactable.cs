@@ -123,7 +123,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     {
         
         isMouseDragged = true;
-        //stackable = false;
+        stackable = false;
         SelectedCard(this.gameObject);
         transform.parent.SetAsLastSibling();
         oldCardPosition = this.gameObject.transform.position;
