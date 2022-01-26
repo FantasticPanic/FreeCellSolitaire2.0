@@ -87,9 +87,17 @@ public class CardManager : MonoBehaviour
                         1), Quaternion.identity, tableauPos[i].transform);
                     newCard.name = card;
                     newCard.GetComponent<Interactable>().row = i;
-                    newCard.transform.SetParent(tableauPos[i].transform);
-
+                    newCard.transform.SetParent(tableauPos[i].transform);          
                     yOffset = yOffset + 30f;
+
+                GameObject lowestCard = tableauPos[i].transform.GetChild(tableauPos[i].transform.childCount -1).gameObject;
+
+                lowestCard.GetComponent<Interactable>().isBlocked = true;
+             /*   foreach (GameObject lowCard in lowestCard)
+                {
+
+                }*/
+
                    
             }
             
@@ -108,7 +116,7 @@ public class CardManager : MonoBehaviour
 
                 tableau[i].Add(deck.Last<string>());
                 deck.RemoveAt(deck.Count - 1);
-
+               
             }
         }
         //in last 4 columns, draw 6 cards

@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     public bool foundation = false;
     public bool isMouseDragged;
     public bool stackable;
+    public bool isBlocked;
 
     public string suit;
     public string color;
@@ -166,14 +167,35 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
     void OnTriggerStay(Collider other)
     {
-        if (isMouseDragged)
+       if (isMouseDragged)
         {
             if (other.gameObject.CompareTag("Card") || other.gameObject.CompareTag("FreeCell") || other.gameObject.CompareTag("Foundation"))
             {
                 userInput.card2 = other.gameObject;
             }
         }
+
+       // if statement stacks cards
+        if (other.CompareTag("Card"))
+        {
+            Interactable c1 = this.GetComponent<Interactable>();
+            Interactable c2 = other.GetComponent<Interactable>();
+            this.stackable = true;
+
+            if (this.isMouseDragged == false)
+            {
+                float yOffset = 10.0f;
+                float zOffset = 0.03f;
+
+                if (c1.value == (c2.value - 1) && c1.color != c2.color)
+                {
+                    c1.gameObject.transform.position = new Vector3(c2.transform.position.x +5.0f, c2.transform.position.y - yOffset,
+                   0 + zOffset);
+                }
+            }
+        }
     }
+    
 
     void SelectedCard(GameObject selected)
     {

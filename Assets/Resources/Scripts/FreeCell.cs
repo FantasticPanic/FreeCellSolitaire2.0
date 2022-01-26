@@ -24,14 +24,7 @@ public class FreeCell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAvailable == true)
-        {
-            this.gameObject.GetComponent<BoxCollider>().enabled = true;
-        }
-        else
-        {
-            this.gameObject.GetComponent<BoxCollider>().enabled = false;
-        }
+       
     }
 
 
