@@ -49,6 +49,7 @@ public class CardManager : MonoBehaviour
         Shuffle(deck);
         CardSort();
         SolitaireDeal();
+        CardColliders();
 
         foreach (string card in deck)
         {
@@ -87,20 +88,11 @@ public class CardManager : MonoBehaviour
                         1), Quaternion.identity, tableauPos[i].transform);
                     newCard.name = card;
                     newCard.GetComponent<Interactable>().row = i;
-                    newCard.transform.SetParent(tableauPos[i].transform);          
+                    newCard.transform.SetParent(tableauPos[i].transform);
+                    newCard.GetComponent<Interactable>().isBlocked = true;
                     yOffset = yOffset + 30f;
-
-                GameObject lowestCard = tableauPos[i].transform.GetChild(tableauPos[i].transform.childCount -1).gameObject;
-
-                lowestCard.GetComponent<Interactable>().isBlocked = true;
-             /*   foreach (GameObject lowCard in lowestCard)
-                {
-
-                }*/
-
                    
-            }
-            
+                 }
         }
 
     }
@@ -126,7 +118,7 @@ public class CardManager : MonoBehaviour
                 {                 
                     tableau[i].Add(deck.Last<string>());
                     deck.RemoveAt(deck.Count - 1);
-
+                
                 }
             }
      }
@@ -136,6 +128,15 @@ public class CardManager : MonoBehaviour
     {
         tableau = new List<string>[] { tabPos0, tabPos1, tabPos2, tabPos3, tabPos4, tabPos5, tabPos6, tabPos7, tabPos8 };
         PlayCards();
+    }
+
+    void CardColliders()
+    {
+        //get the lowest card and turn on 
+        for (int i = 0; i < 8; i++)
+        {
+            tableauPos[i].transform.GetChild(tableauPos[i].transform.childCount -1).transform.GetComponent<Interactable>().isBlocked = false;
+        }
     }
 
     // Update is called once per frame

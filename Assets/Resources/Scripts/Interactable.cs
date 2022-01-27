@@ -125,8 +125,15 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
         }
-        
 
+        if (isBlocked)
+        {
+            transform.GetComponent<Collider>().enabled = false;
+        }
+        else
+        {
+            transform.GetComponent<Collider>().enabled = true;
+        }
        
     }
 
@@ -189,7 +196,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
                 if (c1.value == (c2.value - 1) && c1.color != c2.color)
                 {
-                    c1.gameObject.transform.position = new Vector3(c2.transform.position.x +5.0f, c2.transform.position.y - yOffset,
+                    c1.gameObject.transform.position = new Vector3(c2.transform.position.x +5.0f, c2.transform.position.y + yOffset,
                    0 + zOffset);
                 }
             }
