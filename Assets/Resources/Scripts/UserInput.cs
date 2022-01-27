@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class UserInput : MonoBehaviour
 {
     public GameObject card1;
     public GameObject card2;
     private CardManager cardManager;
+    private int currentScene = 0;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+    }
     void Start()
     {
        
@@ -18,7 +25,10 @@ public class UserInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(currentScene);
+        }
     }
 
     //function for anytime a card gets clicked
@@ -71,47 +81,6 @@ public class UserInput : MonoBehaviour
             c1.gameObject.transform.position = new Vector3(card2.transform.position.x, card2.transform.position.y - yOffset,
            1 + zOffset);
         }
-
-        /* if (c2.foundation || (!c2.foundation && c2.value == 13))
-        {
-            yOffset = 0;
-        }
-        card1.transform.position = new Vector3(selected.transform.position.x, selected.transform.position.y - yOffset,
-            selected.transform.position.z);
-        card1.transform.parent = selected.transform;
-
-        //user can move cards from the top foundation slots
-        if (c1.foundation && c2.foundation && c1.value == 1)
-        {
-            cardManager.foundationPos[c1.row].GetComponent<Interactable>().value = 0;
-            cardManager.foundationPos[c1.row].GetComponent<Interactable>().suit = null;
-        }
-        else if (c1.foundation)
-        {
-            //record the value of the foundation card slot when a card is removed
-            cardManager.foundationPos[c1.row].GetComponent<Interactable>().value = c1.value - 1;
-
-        }
-        else
-        {
-            //if a card is moved from a tableau column, remove it 
-            cardManager.tableau[c1.row].Remove(c1.name);
-        }
-
-        c1.row = c2.row;
-        //if a card is moved to the foundation slot, assign it's value and suit to the foundation slot
-        if (c2.foundation)
-        {
-            cardManager.foundationPos[c1.row].GetComponent<Interactable>().value = c1.value;
-            cardManager.foundationPos[c1.row].GetComponent<Interactable>().suit = c1.suit;
-            c1.foundation = true;
-        }
-        else
-        {
-            c1.foundation = false;
-        }
-        card1 = this.gameObject;
-    }*/
 
     }
 }

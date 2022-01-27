@@ -174,7 +174,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
     void OnTriggerStay(Collider other)
     {
-       if (isMouseDragged)
+        if (isMouseDragged)
         {
             if (other.gameObject.CompareTag("Card") || other.gameObject.CompareTag("FreeCell") || other.gameObject.CompareTag("Foundation"))
             {
@@ -182,7 +182,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
             }
         }
 
-       // if statement stacks cards
+        // if statement stacks cards
         if (other.CompareTag("Card"))
         {
             Interactable c1 = this.GetComponent<Interactable>();
@@ -191,13 +191,16 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
             if (this.isMouseDragged == false)
             {
-                float yOffset = 10.0f;
+                float yOffset = 3.0f;
                 float zOffset = 0.03f;
 
                 if (c1.value == (c2.value - 1) && c1.color != c2.color)
                 {
-                    c1.gameObject.transform.position = new Vector3(c2.transform.position.x +5.0f, c2.transform.position.y + yOffset,
-                   0 + zOffset);
+                    c1.gameObject.transform.position = new Vector3(c2.transform.position.x, c2.transform.position.y - yOffset,
+                   1);
+                    yOffset = yOffset + 30.0f;
+                    c1.row = c2.row;
+                    this.gameObject.transform.SetParent(c2.transform.parent);
                 }
             }
         }

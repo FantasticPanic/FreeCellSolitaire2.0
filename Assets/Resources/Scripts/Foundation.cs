@@ -52,6 +52,7 @@ public class Foundation : MonoBehaviour
                     heldCard.transform.position = this.transform.position;
                     interactable.oldCardPosition = interactable.gameObject.transform.position;
                     isAvailable = false;
+                    other.transform.SetParent(this.transform);
                     
 
                 }

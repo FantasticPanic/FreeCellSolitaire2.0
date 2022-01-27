@@ -42,7 +42,8 @@ public class FreeCell : MonoBehaviour
                 heldCard.transform.position = this.transform.position;
                 interactable.stackable = true;
                 isAvailable = false;
-               // userInput.Stack();
+                other.transform.SetParent(this.transform);
+                // userInput.Stack();
             }
         }
     }

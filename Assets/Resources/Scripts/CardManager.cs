@@ -49,7 +49,7 @@ public class CardManager : MonoBehaviour
         Shuffle(deck);
         CardSort();
         SolitaireDeal();
-        CardColliders();
+
 
         foreach (string card in deck)
         {
@@ -136,12 +136,12 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
             tableauPos[i].transform.GetChild(tableauPos[i].transform.childCount -1).transform.GetComponent<Interactable>().isBlocked = false;
-        }
+        } 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        CardColliders();
     }
 }
