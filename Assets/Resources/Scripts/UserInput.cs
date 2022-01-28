@@ -31,42 +31,7 @@ public class UserInput : MonoBehaviour
         }
     }
 
-    //function for anytime a card gets clicked
-    /*public void Card(GameObject selected)
-    {
-        //set card1 as the selected card
-        card1 = selected;
-        
-         if (card1 != selected)
-        {
-            if (Stackable(selected))
-            {
-                Stack(selected);
-            }
-            else
-            {
-                card1 = selected;
-            }
-        }
-       
-    }*/
-
-
-    /* public bool Stackable(GameObject selected)
-     {
-         Interactable c1 = card1.GetComponent<Interactable>();
-         Interactable c2 = selected.GetComponent<Interactable>();
-
-
-
-         //in the tableau pile, stack cards according to alternative colors from King to Ace
-         if (c1.value == (c2.value - 1) && c1.color != c2.color)
-         {
-
-         }
-
-     }*/
-
+    
     // if card 1 is stackable on card 2
     // cards should stack in the same position and sort downwards
     public void Stack()

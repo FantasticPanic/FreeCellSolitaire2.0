@@ -53,6 +53,8 @@ public class Foundation : MonoBehaviour
                     interactable.oldCardPosition = interactable.gameObject.transform.position;
                     isAvailable = false;
                     other.transform.SetParent(this.transform);
+                    interactable.onFoundation = true;
+                    this.GetComponent<Collider>().isTrigger = false;
                     
 
                 }
@@ -67,10 +69,13 @@ public class Foundation : MonoBehaviour
     {
         if (other.tag == "Card")
         {
+            Interactable interactable = other.gameObject.GetComponent<Interactable>();
+
             if (isAvailable == false)
             {
                 heldCard = null;               
                 isAvailable = true;
+                interactable.onFoundation = false;
             }
         }
     }

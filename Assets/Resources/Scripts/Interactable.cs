@@ -143,6 +143,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         isMouseDragged = true;
         stackable = false;
         SelectedCard(this.gameObject);
+        //moves the selected object out in the front of all other UI objects
         transform.parent.SetAsLastSibling();
         transform.parent.parent.SetAsLastSibling();
         oldCardPosition = this.gameObject.transform.position;
@@ -189,20 +190,31 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
             Interactable c1 = this.GetComponent<Interactable>();
             Interactable c2 = other.GetComponent<Interactable>();
             this.stackable = true;
+            float yOffset = 50.0f;
+            float xOffset = 15.0f;
 
             if (this.isMouseDragged == false)
             {
-             
 
+                //if a card is on a tableau slot
                 if (onFoundation == false && c1.value == (c2.value - 1) && c1.color != c2.color)
                 {
-                    float yOffset = 30.0f;
-                    float xOffset = 15.0f;
                     c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
                    1);
-                    yOffset = yOffset + 30.0f;
+                    
                     c1.row = c2.row;
                     this.gameObject.transform.SetParent(c2.transform.parent);
+                }
+
+                //if a card is on a foundation slot
+                else if (c2.onFoundation == true && c1.value == (c2.value + 1) && c1.suit == c2.suit)
+                {
+                    c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
+                 1);
+                   
+                    c1.row = c2.row;
+                    this.gameObject.transform.SetParent(c2.transform.parent);
+                    c2.isBlocked = true;
                 }
             }
         }

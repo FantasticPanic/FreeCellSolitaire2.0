@@ -79,18 +79,19 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
                    
-                float yOffset = 3.0f;
-               
+                float yOffset = 5.0f;
+                float xOffset = 5.0f;
 
                 foreach (string card in tableau[i])
                 {
-                    GameObject newCard = Instantiate(cardPrefab, new Vector3(tableauPos[i].transform.position.x, tableauPos[i].transform.position.y - yOffset,
+                    GameObject newCard = Instantiate(cardPrefab, new Vector3(tableauPos[i].transform.position.x + xOffset, tableauPos[i].transform.position.y - yOffset,
                         1), Quaternion.identity, tableauPos[i].transform);
                     newCard.name = card;
                     newCard.GetComponent<Interactable>().row = i;
                     newCard.transform.SetParent(tableauPos[i].transform);
                     newCard.GetComponent<Interactable>().isBlocked = true;
-                    yOffset = yOffset + 30f;
+                    yOffset = yOffset + 50.0f;
+                    xOffset = xOffset + 10.0f;
                    
                  }
         }
