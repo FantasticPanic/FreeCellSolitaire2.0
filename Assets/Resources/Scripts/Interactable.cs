@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerUpHandler
 {
-    public bool foundation = false;
+    public bool onFoundation = false;
     public bool isMouseDragged;
     public bool stackable;
     public bool isBlocked;
@@ -144,6 +144,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         stackable = false;
         SelectedCard(this.gameObject);
         transform.parent.SetAsLastSibling();
+        transform.parent.parent.SetAsLastSibling();
         oldCardPosition = this.gameObject.transform.position;
         
         //idk what this is doing
@@ -191,12 +192,13 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
             if (this.isMouseDragged == false)
             {
-                float yOffset = 3.0f;
-                float zOffset = 0.03f;
+             
 
-                if (c1.value == (c2.value - 1) && c1.color != c2.color)
+                if (onFoundation == false && c1.value == (c2.value - 1) && c1.color != c2.color)
                 {
-                    c1.gameObject.transform.position = new Vector3(c2.transform.position.x, c2.transform.position.y - yOffset,
+                    float yOffset = 30.0f;
+                    float xOffset = 15.0f;
+                    c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
                    1);
                     yOffset = yOffset + 30.0f;
                     c1.row = c2.row;
