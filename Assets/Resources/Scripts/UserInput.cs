@@ -5,21 +5,31 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class UserInput : MonoBehaviour
+public class UserInput  : MonoBehaviour 
 {
+    static UserInput instance;
+    public static UserInput Instance
+    {
+        get { return instance; }
+    }
+
     public GameObject card1;
     public GameObject card2;
     private CardManager cardManager;
     private int currentScene = 0;
+    public AudioClip stackConfirm;
     // Start is called before the first frame update
 
     private void Awake()
     {
+        
         currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        
     }
     void Start()
     {
-       
+        AudioSource audio = GetComponentInChildren<AudioSource>();
+        audio.clip = stackConfirm;
     }
 
     // Update is called once per frame
@@ -47,5 +57,10 @@ public class UserInput : MonoBehaviour
            1 + zOffset);
         }
 
+    }
+
+    public void PlaySound()
+    {
+        GetComponentInChildren<AudioSource>().Play();
     }
 }

@@ -10,6 +10,7 @@ public class Foundation : MonoBehaviour
     public bool isAvailable = true;
 
     Interactable interactable;
+    UserInput userInput;
 
     public enum FoundationType
     {
@@ -24,13 +25,16 @@ public class Foundation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        userInput = GameObject.Find("GameManager").GetComponent<UserInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        /*if (isAvailable == false)
+        {
+            userInput.PlaySound();
+        }*/
     }
 
 
@@ -39,11 +43,11 @@ public class Foundation : MonoBehaviour
         if (other.tag == "Card" && isAvailable == true)
         {
             Interactable interactable = other.gameObject.GetComponent<Interactable>();
-            interactable.stackable = true;
+            
 
             if (interactable.suit == foundationType.ToString() && interactable.value == 1)
             {
-               
+                interactable.stackable = true;
 
                 if (isAvailable == true && interactable.isMouseDragged == false)
                 {
@@ -55,12 +59,11 @@ public class Foundation : MonoBehaviour
                     other.transform.SetParent(this.transform);
                     interactable.onFoundation = true;
                     this.GetComponent<Collider>().isTrigger = false;
-                    
-
+                   // userInput.PlaySound();
                 }
             }
         }
-     
+
     }
 
    

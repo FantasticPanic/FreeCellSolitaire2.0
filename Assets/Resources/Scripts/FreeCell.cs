@@ -18,7 +18,7 @@ public class FreeCell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        userInput = GameObject.Find("GameManager").GetComponent<UserInput>();
     }
 
     // Update is called once per frame
@@ -43,7 +43,7 @@ public class FreeCell : MonoBehaviour
                 interactable.stackable = true;
                 isAvailable = false;
                 other.transform.SetParent(this.transform);
-                // userInput.Stack();
+                
             }
         }
     }

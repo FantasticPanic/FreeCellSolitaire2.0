@@ -24,6 +24,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     public Vector3 oldCardPosition;
     public Vector3 newCardPosition;
     UserInput userInput;
+   
 
   
 
@@ -167,11 +168,9 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         if (stackable == false)
         {
             ResetCard();
+
         }
         
-        print("Let Go!");
-
-
     }
 
     void OnTriggerStay(Collider other)
@@ -189,9 +188,10 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         {
             Interactable c1 = this.GetComponent<Interactable>();
             Interactable c2 = other.GetComponent<Interactable>();
-            this.stackable = true;
+           
             float yOffset = 50.0f;
             float xOffset = 15.0f;
+            this.stackable = true;
 
             if (this.isMouseDragged == false)
             {
@@ -204,6 +204,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
                     
                     c1.row = c2.row;
                     this.gameObject.transform.SetParent(c2.transform.parent);
+                    //this.stackable = true;
                 }
 
                 //if a card is on a foundation slot
@@ -215,8 +216,10 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
                     c1.row = c2.row;
                     this.gameObject.transform.SetParent(c2.transform.parent);
                     c2.isBlocked = true;
+                    //this.stackable = true;
                 }
             }
+            //ResetCard();
         }
     }
     
@@ -227,8 +230,16 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Card") || other.gameObject.CompareTag("FreeCell") || other.gameObject.CompareTag("Foundation"))
+        {
+            stackable = false;
+        }
+    }
 
-   public IEnumerator CardStatus(CardState cardState)
+
+    public IEnumerator CardStatus(CardState cardState)
     {
         switch (cardState)
         {
@@ -265,4 +276,8 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         this.gameObject.transform.position = oldCardPosition;
     }
 
+    public void StackConfirm()
+    {
+        
+    }
 }
