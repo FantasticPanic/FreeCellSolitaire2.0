@@ -24,7 +24,9 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     public Vector3 oldCardPosition;
     public Vector3 newCardPosition;
     UserInput userInput;
-   
+
+    [SerializeField]
+    CardMoveUndo cardMoveUndo;
 
   
 
@@ -216,6 +218,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
                     c1.row = c2.row;
                     this.gameObject.transform.SetParent(c2.transform.parent);
                     c2.isBlocked = true;
+                    SendMoveCommand(c1.gameObject.transform.position, c2.transform.parent.gameObject, this.gameObject.transform);
                     //this.stackable = true;
                 }
             }
@@ -276,8 +279,19 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         this.gameObject.transform.position = oldCardPosition;
     }
 
-    public void StackConfirm()
+    private void SendMoveCommand(Vector3 newPosition, GameObject newParent, Transform oldPosition)
     {
+        ICommand movement = new Move(newPosition, newParent, oldPosition);
+        cardMoveUndo.AddCommand(movement);
+
         
     }
+
+    public void undoMove()
+    {
+        cardMoveUndo.UndoCommand();
+    }
+
+
+
 }
