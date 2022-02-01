@@ -45,6 +45,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     {
         oldCardPosition = transform.position;
         userInput = GameObject.Find("GameManager").GetComponent<UserInput>();
+        cardMoveUndo = GameObject.Find("GameManager").gameObject.GetComponent<CardMoveUndo>();
         if (CompareTag("Card"))
         {
             //suit will be first letter
@@ -206,6 +207,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
                     
                     c1.row = c2.row;
                     this.gameObject.transform.SetParent(c2.transform.parent);
+                    SendMoveCommand(c1.transform.gameObject, c1.gameObject.transform.position, c2.transform.parent.gameObject, this.gameObject.transform);
                     //this.stackable = true;
                 }
 
@@ -218,7 +220,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
                     c1.row = c2.row;
                     this.gameObject.transform.SetParent(c2.transform.parent);
                     c2.isBlocked = true;
-                    SendMoveCommand(c1.gameObject.transform.position, c2.transform.parent.gameObject, this.gameObject.transform);
+                    SendMoveCommand(c1.transform.gameObject, c1.gameObject.transform.position, c2.transform.parent.gameObject, this.gameObject.transform);
                     //this.stackable = true;
                 }
             }
@@ -279,18 +281,15 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         this.gameObject.transform.position = oldCardPosition;
     }
 
-    private void SendMoveCommand(Vector3 newPosition, GameObject newParent, Transform oldPosition)
+    public void SendMoveCommand(GameObject objectToMove, Vector3 newPosition, GameObject newParent, Transform oldPosition)
     {
-        ICommand movement = new Move(newPosition, newParent, oldPosition);
-        cardMoveUndo.AddCommand(movement);
+        ICommand movement = new Move(objectToMove, newPosition, newParent, oldPosition);
+        cardMoveUndo?.AddCommand(movement);
 
         
     }
 
-    public void undoMove()
-    {
-        cardMoveUndo.UndoCommand();
-    }
+
 
 
 

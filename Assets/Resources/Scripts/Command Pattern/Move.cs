@@ -8,24 +8,27 @@ public class Move : ICommand
     private Vector3 newPosition;
     private Transform oldPosition;
     private GameObject newParent;
+    private GameObject objectToMove;
 
-    public Move(Vector3 newPosition, GameObject newParent, Transform oldPosition)
+    public Move(GameObject objectToMove, Vector3 newPosition, GameObject newParent, Transform oldPosition)
     {
         this.newPosition = newPosition;
         this.newParent = newParent;
         this.oldPosition = oldPosition;
+        this.objectToMove = objectToMove;
     }
 
     public void Execute()
     {
         oldPosition.position = newPosition;
-        oldPosition.transform.SetParent(newParent.transform.parent);
+        objectToMove.transform.SetParent(newParent.transform.parent);
     }
 
     public void Undo()
     {
         oldPosition.position = oldPosition.position;
-        oldPosition.transform.SetParent(oldPosition.transform.parent);
+        objectToMove.transform.SetParent(GameObject.Find("Deck (1)").transform);
+
 
     }
     // Start is called before the first frame update
