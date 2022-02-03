@@ -59,7 +59,7 @@ public class Foundation : MonoBehaviour
                     other.transform.SetParent(this.transform);
                     interactable.onFoundation = true;
                     this.GetComponent<Collider>().isTrigger = false;
-                    interactable.SendMoveCommand(other.gameObject, other.gameObject.transform.position, this.transform.parent.gameObject, other.gameObject.transform);
+                    //interactable.SendMoveCommand(interactable, other.gameObject.transform.position, interactable.transform.parent, other.gameObject.transform);
                    // userInput.PlaySound();
                 }
             }

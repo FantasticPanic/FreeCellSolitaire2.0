@@ -39,6 +39,6 @@ public class CardMoveUndo : MonoBehaviour
 
     private void Start()
     {
-        deck = GameObject.Find("Deck (1)").transform;
+        
     }
 }

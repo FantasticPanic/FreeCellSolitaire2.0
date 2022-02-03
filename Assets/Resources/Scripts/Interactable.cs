@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerUpHandler
+public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public bool onFoundation = false;
     public bool isMouseDragged;
@@ -18,11 +18,10 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
     private string valueString;
 
-    private float startPosX;
-    private float startPosY;
-
     public Vector3 oldCardPosition;
     public Vector3 newCardPosition;
+    public Transform oldCardParent;
+
     UserInput userInput;
 
     [SerializeField]
@@ -151,15 +150,12 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         transform.parent.SetAsLastSibling();
         transform.parent.parent.SetAsLastSibling();
         oldCardPosition = this.gameObject.transform.position;
+        oldCardParent = this.gameObject.transform.parent;
         
         //idk what this is doing
         userInput.card1 = this.gameObject;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        
-    }
 
     public void OnPointerUp(PointerEventData eventData)
     {
@@ -202,12 +198,12 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
                 //if a card is on a tableau slot
                 if (onFoundation == false && c1.value == (c2.value - 1) && c1.color != c2.color)
                 {
-                    c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
-                   1);
+                   // c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
+                   //1);
                     
-                    c1.row = c2.row;
-                    this.gameObject.transform.SetParent(c2.transform.parent);
-                    SendMoveCommand(c1.transform.gameObject, c1.gameObject.transform.position, c2.transform.parent.gameObject, this.gameObject.transform);
+                    //c1.row = c2.row;
+                    //this.gameObject.transform.SetParent(c2.transform.parent);
+                    SendMoveCommand(c1, c1.gameObject.transform.position, c2, this.gameObject.transform);
                     //this.stackable = true;
                 }
 
@@ -220,11 +216,10 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
                     c1.row = c2.row;
                     this.gameObject.transform.SetParent(c2.transform.parent);
                     c2.isBlocked = true;
-                    SendMoveCommand(c1.transform.gameObject, c1.gameObject.transform.position, c2.transform.parent.gameObject, this.gameObject.transform);
+                    //SendMoveCommand(c1.transform.gameObject, c1.gameObject.transform.position, c2.transform.parent.gameObject, this.gameObject.transform);
                     //this.stackable = true;
                 }
             }
-            //ResetCard();
         }
     }
     
@@ -281,7 +276,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         this.gameObject.transform.position = oldCardPosition;
     }
 
-    public void SendMoveCommand(GameObject objectToMove, Vector3 newPosition, GameObject newParent, Transform oldPosition)
+    public void SendMoveCommand(Interactable objectToMove, Vector3 newPosition, Interactable newParent, Transform oldPosition)
     {
         ICommand movement = new Move(objectToMove, newPosition, newParent, oldPosition);
         cardMoveUndo?.AddCommand(movement);

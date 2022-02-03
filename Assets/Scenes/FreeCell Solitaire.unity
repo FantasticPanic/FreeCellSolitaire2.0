@@ -864,7 +864,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 629079845}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1112421953}
+        m_TargetAssemblyTypeName: UserInput, Assembly-CSharp
+        m_MethodName: UndoMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &629079845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1387,7 +1399,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.019000001, y: 0.12588988}
   m_AnchorMax: {x: 0.98700005, y: 0.68255967}
-  m_AnchoredPosition: {x: -14, y: 0}
+  m_AnchoredPosition: {x: -14, y: 15}
   m_SizeDelta: {x: 0, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &963194225
@@ -1739,6 +1751,7 @@ GameObject:
   - component: {fileID: 1112421952}
   - component: {fileID: 1112421951}
   - component: {fileID: 1112421953}
+  - component: {fileID: 1112421954}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1854,6 +1867,20 @@ MonoBehaviour:
   card1: {fileID: 0}
   card2: {fileID: 0}
   stackConfirm: {fileID: 8300000, guid: c9459f23c69f0c348a4972a9f073d690, type: 3}
+  cardmoveUndo: {fileID: 0}
+--- !u!114 &1112421954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112421950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe041233cc3a5344697f93d38ac3f168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deck: {fileID: 0}
 --- !u!1 &1199324873
 GameObject:
   m_ObjectHideFlags: 0
