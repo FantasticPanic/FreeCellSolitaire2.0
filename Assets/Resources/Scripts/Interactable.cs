@@ -203,8 +203,8 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                     
                     //c1.row = c2.row;
                     //this.gameObject.transform.SetParent(c2.transform.parent);
-                    SendMoveCommand(c1, c1.gameObject.transform.position, c2, this.gameObject.transform);
-                    //this.stackable = true;
+                    SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
+                   // this.stackable = true;
                 }
 
                 //if a card is on a foundation slot
@@ -213,10 +213,10 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                     c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
                  1);
                    
-                    c1.row = c2.row;
-                    this.gameObject.transform.SetParent(c2.transform.parent);
+                    //c1.row = c2.row;
+                   // this.gameObject.transform.SetParent(c2.transform.parent);
+                    SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
                     c2.isBlocked = true;
-                    //SendMoveCommand(c1.transform.gameObject, c1.gameObject.transform.position, c2.transform.parent.gameObject, this.gameObject.transform);
                     //this.stackable = true;
                 }
             }
@@ -276,7 +276,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         this.gameObject.transform.position = oldCardPosition;
     }
 
-    public void SendMoveCommand(Interactable objectToMove, Vector3 newPosition, Interactable newParent, Transform oldPosition)
+    public void SendMoveCommand(GameObject objectToMove, Vector3 newPosition, GameObject newParent, Transform oldPosition)
     {
         ICommand movement = new Move(objectToMove, newPosition, newParent, oldPosition);
         cardMoveUndo?.AddCommand(movement);
