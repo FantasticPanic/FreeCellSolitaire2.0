@@ -40,7 +40,8 @@ public class FreeCell : MonoBehaviour
                 //interactable bool should turn on here
                 heldCard = other.gameObject;
                 //heldCard.transform.position = this.transform.position;
-                interactable.stackable = true;
+                // interactable.stackable = true;
+                other.transform.SetParent(this.transform);
                 isAvailable = false;
                 //other.transform.SetParent(this.transform);
                 interactable.SendMoveCommand(other.gameObject, other.gameObject.transform.position, this.gameObject, other.gameObject.transform);

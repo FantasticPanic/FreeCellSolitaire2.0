@@ -159,7 +159,6 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerUp(PointerEventData eventData)
     {
-       // userInput.Stack();
         isMouseDragged = false;
         userInput.card1 = null;
         userInput.card2 = null;
@@ -187,9 +186,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         {
             Interactable c1 = this.GetComponent<Interactable>();
             Interactable c2 = other.GetComponent<Interactable>();
-           
-            float yOffset = 50.0f;
-            float xOffset = 15.0f;
+          
             this.stackable = true;
 
             if (this.isMouseDragged == false)
@@ -204,19 +201,21 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                     //c1.row = c2.row;
                     //this.gameObject.transform.SetParent(c2.transform.parent);
                     SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
-                   // this.stackable = true;
+                    c1.transform.SetParent(c2.transform.parent);
+                    // this.stackable = true;
                 }
 
                 //if a card is on a foundation slot
                 else if (c2.onFoundation == true && c1.value == (c2.value + 1) && c1.suit == c2.suit)
                 {
-                    c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
-                 1);
+                   /* c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
+                 1);*/
                    
                     //c1.row = c2.row;
                    // this.gameObject.transform.SetParent(c2.transform.parent);
                     SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
                     c2.isBlocked = true;
+                    c1.transform.SetParent(c2.transform.parent);
                     //this.stackable = true;
                 }
             }
@@ -280,8 +279,7 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         ICommand movement = new Move(objectToMove, newPosition, newParent, oldPosition);
         cardMoveUndo?.AddCommand(movement);
-
-        
+      
     }
 
 

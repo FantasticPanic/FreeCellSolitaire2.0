@@ -13,13 +13,6 @@ public class Move : ICommand
     float yOffset = 50.0f;
     float xOffset = 15.0f;
 
-   /* public Move(Interactable c1, Vector3 newPosition, Interactable c2, Transform oldPosition)
-    {
-        this.newPosition = newPosition;
-        this.c1 = c1;
-        this.oldPosition = oldPosition;
-        this.c2 = c2;
-    }*/
 
     public Move(GameObject c1, Vector3 newPosition, GameObject c2, Transform oldPosition)
     {
@@ -41,14 +34,11 @@ public class Move : ICommand
                   1);
 
         //c1.row = c2.row;
-        c1.transform.SetParent(c2.transform.parent);
+       // c1.transform.SetParent(c2.transform.parent);
     }
 
     public void Undo()
     {
-        //   oldPosition.position = oldPosition.position;
-        // c1.transform.SetParent(GameObject.Find("Deck (1)").transform);
-
         //c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
         //        1);
        // c1.stackable = true;

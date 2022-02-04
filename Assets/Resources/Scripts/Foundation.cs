@@ -56,7 +56,7 @@ public class Foundation : MonoBehaviour
                    // heldCard.transform.position = this.transform.position;
                     //interactable.oldCardPosition = interactable.gameObject.transform.position;
                     isAvailable = false;
-                    //other.transform.SetParent(this.transform);
+                    other.transform.SetParent(this.transform);
                     interactable.onFoundation = true;
                     this.GetComponent<Collider>().isTrigger = false;
                     interactable.SendMoveCommand(other.gameObject, other.gameObject.transform.position, this.gameObject, other.gameObject.transform);
