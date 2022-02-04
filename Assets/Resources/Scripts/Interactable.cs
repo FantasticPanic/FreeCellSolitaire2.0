@@ -194,29 +194,17 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
                 //if a card is on a tableau slot
                 if (onFoundation == false && c1.value == (c2.value - 1) && c1.color != c2.color)
-                {
-                   // c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
-                   //1);
-                    
-                    //c1.row = c2.row;
-                    //this.gameObject.transform.SetParent(c2.transform.parent);
-                    SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
+                {              
+                    userInput.SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
                     c1.transform.SetParent(c2.transform.parent);
-                    // this.stackable = true;
                 }
 
                 //if a card is on a foundation slot
                 else if (c2.onFoundation == true && c1.value == (c2.value + 1) && c1.suit == c2.suit)
-                {
-                   /* c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
-                 1);*/
-                   
-                    //c1.row = c2.row;
-                   // this.gameObject.transform.SetParent(c2.transform.parent);
-                    SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
+                {                 
+                    userInput.SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
                     c2.isBlocked = true;
                     c1.transform.SetParent(c2.transform.parent);
-                    //this.stackable = true;
                 }
             }
         }
@@ -274,16 +262,5 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         this.gameObject.transform.position = oldCardPosition;
     }
-
-    public void SendMoveCommand(GameObject objectToMove, Vector3 newPosition, GameObject newParent, Transform oldPosition)
-    {
-        ICommand movement = new Move(objectToMove, newPosition, newParent, oldPosition);
-        cardMoveUndo?.AddCommand(movement);
-      
-    }
-
-
-
-
 
 }

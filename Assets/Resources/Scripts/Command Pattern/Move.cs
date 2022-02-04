@@ -26,30 +26,20 @@ public class Move : ICommand
 
 
     public void Execute()
-    {
-        //oldPosition.position = newPosition;
-        //objectToMove.transform.SetParent(newParent.transform.parent);
-
+    { 
         c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
                   1);
 
-        //c1.row = c2.row;
-       // c1.transform.SetParent(c2.transform.parent);
     }
 
     public void Undo()
     {
-        //c1.gameObject.transform.position = new Vector3(c2.transform.position.x + xOffset, c2.transform.position.y - yOffset,
-        //        1);
-       // c1.stackable = true;
+
         c1.gameObject.transform.position = new Vector3(c1.GetComponent<Interactable>().oldCardPosition.x  
             ,c1.transform.GetComponent<Interactable>().oldCardPosition.y, 1);
         c1.transform.SetAsLastSibling();
         c1.transform.SetParent(c1.GetComponent<Interactable>().oldCardParent);
-       
-
-
+      
     }
-    // Start is called before the first frame update
 
 }

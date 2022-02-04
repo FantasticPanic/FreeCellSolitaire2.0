@@ -13,7 +13,8 @@ public class FreeCell : MonoBehaviour
     Interactable interactable;
     UserInput userInput;
     PointerEventData eventData;
-  
+    CardMoveUndo cardMoveUndo;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,14 +40,12 @@ public class FreeCell : MonoBehaviour
             {
                 //interactable bool should turn on here
                 heldCard = other.gameObject;
-                //heldCard.transform.position = this.transform.position;
-                // interactable.stackable = true;
-                other.transform.SetParent(this.transform);
+                // interactable.stackable = true;;
                 isAvailable = false;
-                //other.transform.SetParent(this.transform);
-                interactable.SendMoveCommand(other.gameObject, other.gameObject.transform.position, this.gameObject, other.gameObject.transform);
+                userInput.SendMoveCommand(other.gameObject, other.gameObject.transform.position, this.gameObject, other.gameObject.transform);
                 //centers the card in the foundation slot
                 other.transform.position = new Vector3(other.transform.position.x - 15.0f, other.transform.position.y + 50.0f, 1);
+                other.transform.SetParent(this.transform);
 
             }
         }

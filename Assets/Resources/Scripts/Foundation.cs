@@ -31,10 +31,7 @@ public class Foundation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (isAvailable == false)
-        {
-            userInput.PlaySound();
-        }*/
+
     }
 
 
@@ -53,16 +50,13 @@ public class Foundation : MonoBehaviour
                 {
                     //interactable bool should turn on here
                     heldCard = other.gameObject;
-                   // heldCard.transform.position = this.transform.position;
-                    //interactable.oldCardPosition = interactable.gameObject.transform.position;
                     isAvailable = false;
                     other.transform.SetParent(this.transform);
                     interactable.onFoundation = true;
                     this.GetComponent<Collider>().isTrigger = false;
-                    interactable.SendMoveCommand(other.gameObject, other.gameObject.transform.position, this.gameObject, other.gameObject.transform);
+                    userInput.SendMoveCommand(other.gameObject, other.gameObject.transform.position, this.gameObject, other.gameObject.transform);
                     //centers the card in the foundation slot
                     other.transform.position = new Vector3(other.transform.position.x - 15.0f, other.transform.position.y + 50.0f, 1);
-                    // userInput.PlaySound();
                 }
             }
         }

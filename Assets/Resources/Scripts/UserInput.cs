@@ -20,14 +20,14 @@ public class UserInput  : MonoBehaviour
     public AudioClip stackConfirm;
 
     [SerializeField]
-    CardMoveUndo cardmoveUndo;
+    CardMoveUndo cardMoveUndo;
     // Start is called before the first frame update
 
     private void Awake()
     {
         
         currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-        cardmoveUndo = GetComponent<CardMoveUndo>();
+        cardMoveUndo = GetComponent<CardMoveUndo>();
         
     }
     void Start()
@@ -70,7 +70,14 @@ public class UserInput  : MonoBehaviour
 
     public void UndoMove()
     {
-        cardmoveUndo.UndoCommand();
+        cardMoveUndo.UndoCommand();
         print("Undo card movement!");
+    }
+
+    public void SendMoveCommand(GameObject objectToMove, Vector3 newPosition, GameObject newParent, Transform oldPosition)
+    {
+        ICommand movement = new Move(objectToMove, newPosition, newParent, oldPosition);
+        cardMoveUndo?.AddCommand(movement);
+
     }
 }
