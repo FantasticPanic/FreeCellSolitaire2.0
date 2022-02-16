@@ -187,29 +187,34 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         // if statement stacks cards
         if (other.CompareTag("Card") && c2.transform.parent.tag != "FreeCell")
         {
-          
-            this.stackable = true;
-
-            if (this.isMouseDragged == false)
+            //if a card is on a tableau slot
+            if (onFoundation == false && c1.value == (c2.value - 1) && c1.color != c2.color)
             {
+                this.stackable = true;
 
-                //if a card is on a tableau slot
-                if (onFoundation == false && c1.value == (c2.value - 1) && c1.color != c2.color)
-                {              
+                if (this.isMouseDragged == false)
+                {
                     userInput.SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
                     c1.transform.SetParent(c2.transform.parent);
                     c2.isBlocked = true;
                 }
+            }
+                
 
                 //if a card is on a foundation slot
                 if (c2.onFoundation == true && c1.value == (c2.value + 1) && c1.suit == c2.suit)
-                {                 
+                {
+
+                this.stackable = true;
+
+                if (this.isMouseDragged == false)
+                    {
                     userInput.SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
                     c1.onFoundation = true;
                     c2.isBlocked = true;
                     c1.transform.SetParent(c2.transform.parent);
+                    }
                 }
-            }
         }
     }
     
