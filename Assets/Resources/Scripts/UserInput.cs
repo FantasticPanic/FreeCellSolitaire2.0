@@ -78,7 +78,7 @@ public class UserInput  : MonoBehaviour
     public void SendMoveCommand(GameObject objectToMove, Vector3 newPosition, GameObject newParent, Transform oldPosition)
     {
         ICommand movement = new Move(objectToMove, newPosition, newParent, oldPosition);
-        cardMoveUndo?.AddCommand(movement);
+        cardMoveUndo.AddCommand(movement);
 
     }
 

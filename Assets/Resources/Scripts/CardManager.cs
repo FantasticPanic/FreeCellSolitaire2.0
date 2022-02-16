@@ -150,9 +150,9 @@ public class CardManager : MonoBehaviour
     {
         for (int i = 0; i < foundationPos.Length; i++)
         {
-            if (foundationPos[i].transform.childCount == 14)
+            if (foundationPos[i].transform.childCount >= 14)
             {
-                
+                WinGame();
             }
         }
     }
@@ -160,7 +160,7 @@ public class CardManager : MonoBehaviour
     public void WinGame()
     {
             winText.SetActive(true);
-            winText.transform.parent.SetAsLastSibling();
+            winText.transform.SetAsLastSibling();
             TimerController.instance.EndTimer();
             finishTime.text = "Finish Time: " + TimerController.instance.currentTime;
     }
@@ -173,6 +173,7 @@ public class CardManager : MonoBehaviour
         {
             WinGame();
         }
+        WinCondition();
      }
 }
 

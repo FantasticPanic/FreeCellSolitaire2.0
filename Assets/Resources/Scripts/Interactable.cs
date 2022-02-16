@@ -173,6 +173,9 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     void OnTriggerStay(Collider other)
     {
+        Interactable c1 = this.GetComponent<Interactable>();
+        Interactable c2 = other.GetComponent<Interactable>();
+
         if (isMouseDragged)
         {
             if (other.gameObject.CompareTag("Card") || other.gameObject.CompareTag("FreeCell") || other.gameObject.CompareTag("Foundation"))
@@ -182,10 +185,8 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         }
 
         // if statement stacks cards
-        if (other.CompareTag("Card"))
+        if (other.CompareTag("Card") && c2.transform.parent.tag != "FreeCell")
         {
-            Interactable c1 = this.GetComponent<Interactable>();
-            Interactable c2 = other.GetComponent<Interactable>();
           
             this.stackable = true;
 
@@ -197,12 +198,14 @@ public class Interactable : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                 {              
                     userInput.SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
                     c1.transform.SetParent(c2.transform.parent);
+                    c2.isBlocked = true;
                 }
 
                 //if a card is on a foundation slot
-                else if (c2.onFoundation == true && c1.value == (c2.value + 1) && c1.suit == c2.suit)
+                if (c2.onFoundation == true && c1.value == (c2.value + 1) && c1.suit == c2.suit)
                 {                 
                     userInput.SendMoveCommand(c1.gameObject, c1.gameObject.transform.position, c2.gameObject, this.gameObject.transform);
+                    c1.onFoundation = true;
                     c2.isBlocked = true;
                     c1.transform.SetParent(c2.transform.parent);
                 }

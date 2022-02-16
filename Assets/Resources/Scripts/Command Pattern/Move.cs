@@ -38,6 +38,7 @@ public class Move : ICommand
         c1.gameObject.transform.position = new Vector3(c1.GetComponent<Interactable>().oldCardPosition.x  
             ,c1.transform.GetComponent<Interactable>().oldCardPosition.y, 1);
         c1.transform.SetAsLastSibling();
+        c2.GetComponent<Interactable>().isBlocked = false;
         c1.transform.SetParent(c1.GetComponent<Interactable>().oldCardParent);
       
     }
