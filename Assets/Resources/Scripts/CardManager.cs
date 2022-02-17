@@ -142,18 +142,32 @@ public class CardManager : MonoBehaviour
         //get the lowest card and turn on 
         for (int i = 0; i < 8; i++)
         {
-            tableauPos[i].transform.GetChild(tableauPos[i].transform.childCount - 1).transform.GetComponent<Interactable>().isBlocked = false;
+            if (tableauPos[i].transform.childCount != 0)
+            {
+                tableauPos[i].transform.GetChild(tableauPos[i].transform.childCount - 1).transform.GetComponent<Interactable>().isBlocked = false;
+            }
         }
+        
     }
 
     void WinCondition()
     {
+        bool allFoundationsComplete = false;
         for (int i = 0; i < foundationPos.Length; i++)
         {
-            if (foundationPos[i].transform.childCount >= 14)
+            if (foundationPos[i].transform.childCount != 14)
             {
-                WinGame();
+                allFoundationsComplete = false;
+                
             }
+            else
+            {
+                allFoundationsComplete = true;
+            }
+        }
+        if (allFoundationsComplete)
+        {
+            WinGame();
         }
     }
 
