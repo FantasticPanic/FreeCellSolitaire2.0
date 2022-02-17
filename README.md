@@ -1,5 +1,5 @@
 # FreeCellSolitaire2.0
-
+![](https://github.com/FantasticPanic/FreeCellSolitaire2.0/blob/main/Assets/Images/freeCell_title.jpg)
 This WebGL game was made with Unity. This is an exercise intended to recreate FreeCell Solitaire. I'm generally happy with the way it turned out, but
 there could definitely be some improvements.
 
