@@ -11,8 +11,11 @@ public class CardManager : MonoBehaviour
     public GameObject canvas;
     public GameObject[] tableauPos;
     public GameObject[] foundationPos;
+    public string[] autoWinText;
+    public GameObject autoWinObject;
     public GameObject winText;
     public TextMeshProUGUI finishTime;
+    private bool victory;
 
 
     public static string[] suits = { "C", "D", "S", "H" };
@@ -135,6 +138,7 @@ public class CardManager : MonoBehaviour
         PlayCards();
         TimerController.instance.BeginTimer();
         winText.SetActive(false);
+        victory = false;
     }
 
     void CardColliders()
@@ -173,19 +177,22 @@ public class CardManager : MonoBehaviour
 
     public void WinGame()
     {
-            winText.SetActive(true);
-            winText.transform.SetAsLastSibling();
-            TimerController.instance.EndTimer();
-            finishTime.text = "Finish Time: " + TimerController.instance.currentTime;
+        winText.SetActive(true);
+        winText.transform.SetAsLastSibling();
+        TimerController.instance.EndTimer();
+        finishTime.text = "Finish Time: " + TimerController.instance.currentTime;
+        victory = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         CardColliders();
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && victory == false)
         {
             WinGame();
+            autoWinObject.SetActive(true);
+            autoWinObject.GetComponent<TextMeshProUGUI>().text = autoWinText[Random.Range(0, 20)];
         }
         WinCondition();
      }
