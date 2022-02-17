@@ -56,7 +56,7 @@ public class Foundation : MonoBehaviour
                     this.GetComponent<Collider>().isTrigger = false;
                     userInput.SendMoveCommand(other.gameObject, other.gameObject.transform.position, this.gameObject, other.gameObject.transform);
                     //centers the card in the foundation slot
-                    other.transform.position = new Vector3(other.transform.position.x - 15.0f, other.transform.position.y + 50.0f, 1);
+                    other.transform.position = new Vector3(other.transform.position.x - 2.0f, other.transform.position.y + 20.0f, 1);
                 }
             }
         }

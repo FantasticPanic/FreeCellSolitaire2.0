@@ -97,8 +97,8 @@ public class CardManager : MonoBehaviour
                 newCard.GetComponent<Interactable>().row = i;
                 newCard.transform.SetParent(tableauPos[i].transform);
                 newCard.GetComponent<Interactable>().isBlocked = true;
-                yOffset = yOffset + 50.0f;
-                xOffset = xOffset + 10.0f;
+                yOffset = yOffset + 20.0f;
+                xOffset = xOffset + 5.0f;
 
             }
         }

@@ -10,8 +10,8 @@ public class Move : ICommand
     private GameObject c2;
     private GameObject c1;
     private GameObject slot;
-    float yOffset = 50.0f;
-    float xOffset = 15.0f;
+    float yOffset = 20.0f;
+    float xOffset = 5.0f;
 
 
     public Move(GameObject c1, Vector3 newPosition, GameObject c2, Transform oldPosition)
