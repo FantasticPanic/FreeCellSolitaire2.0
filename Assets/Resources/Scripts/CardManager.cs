@@ -139,11 +139,19 @@ public class CardManager : MonoBehaviour
         TimerController.instance.BeginTimer();
         winText.SetActive(false);
         victory = false;
+        //get the lowest card and turn on the collider
+        for (int i = 0; i < 8; i++)
+        {
+            if (tableauPos[i].transform.childCount != 0)
+            {
+                tableauPos[i].transform.GetChild(tableauPos[i].transform.childCount - 1).transform.GetComponent<Interactable>().isBlocked = false;
+            }
+        }
     }
 
     void CardColliders()
     {
-        //get the lowest card and turn on 
+        //get the lowest card and turn on the collider
         for (int i = 0; i < 8; i++)
         {
             if (tableauPos[i].transform.childCount != 0)

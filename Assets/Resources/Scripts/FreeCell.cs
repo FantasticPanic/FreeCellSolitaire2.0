@@ -40,7 +40,6 @@ public class FreeCell : MonoBehaviour
             {
                 //interactable bool should turn on here
                 heldCard = other.gameObject;
-                // interactable.stackable = true;;
                 isAvailable = false;
                 userInput.SendMoveCommand(other.gameObject, other.gameObject.transform.position, this.gameObject, other.gameObject.transform);
                 //centers the card in the foundation slot
